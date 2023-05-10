@@ -48,6 +48,7 @@ class RegisterWidget extends StatelessWidget {
                   DefaultInput(label: 'Identifiant', controller: loginController,),
                   DefaultInput(label: 'Mot de passe', isPassword: true, controller: passwordController,),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Checkbox(
                         checkColor: Colors.white,
@@ -103,28 +104,5 @@ class RegisterWidget extends StatelessWidget {
     printResponseStatus(response);
   }
 
-  String setBody() {
-    return jsonEncode(<String, String>{
-      "login": loginController.text,
-      "password": passwordController.text,
-      "email": mailController.text,
-    });
-  }
-
-  Map<String, String> setHeader() {
-    return <String, String>{
-      'Content-Type': 'application/json',
-    };
-  }
-
-  void printResponseStatus(response) {
-    if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-    } else {
-      //TODO: TOASTR MESSAGE
-      throw Exception('Failed to create session.');
-    }
-  }
 
 }

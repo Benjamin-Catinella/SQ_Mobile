@@ -5,13 +5,15 @@ import 'package:http/http.dart';
 import 'package:sg_mobile/widgets/inputs.dart';
 import 'package:sg_mobile/widgets/register.dart';
 
+import '../service/service_locator.dart';
+
 
 const double inputFieldHorizontalPadding = 30.0;
 
 class LoginWidget extends StatelessWidget {
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
-
+  final authenticationService = getIt<AuthenticationService>();
   LoginWidget({super.key});
 
   @override
@@ -89,35 +91,6 @@ class LoginWidget extends StatelessWidget {
 
   void sendLogin() async {
     var url = Uri.parse('http://localhost:8080/api/1/sessions');
-    var response = await post(
-      url,
-      headers: setHeader(),
-      body: setBody(),
-    );
 
-    printResponseStatus(response);
-  }
-
-  String setBody() {
-    return jsonEncode(<String, String>{
-      'login': loginController.text,
-      'password': passwordController.text,
-    });
-  }
-
-  Map<String, String> setHeader() {
-    return <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    };
-  }
-
-  void printResponseStatus(response) {
-    if (response.statusCode == 200) {
-      print('Response status: ${response.statusCode}');
-      print('Response body: ${response.body}');
-    } else {
-      //TODO: TOASTR MESSAGE
-      throw Exception('Failed to create session.');
-    }
   }
 }
