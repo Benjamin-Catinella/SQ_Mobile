@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home : Scaffold(
+        appBar: SquareGameAppBar(),
         resizeToAvoidBottomInset: false,
         body: LoginWidget(),
       )
