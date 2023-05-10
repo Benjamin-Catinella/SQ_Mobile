@@ -1,12 +1,11 @@
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:sg_mobile/widgets/Login.dart';
-import 'package:sg_mobile/widgets/SquareGameAppBar.dart';
+import 'package:sg_mobile/widgets/login.dart';
+import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {

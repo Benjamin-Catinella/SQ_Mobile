@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:sg_mobile/widgets/Inputs.dart';
-import 'package:sg_mobile/widgets/Register.dart';
+import 'package:sg_mobile/widgets/inputs.dart';
+import 'package:sg_mobile/widgets/register.dart';
 
-import 'SquareGameAppBar.dart';
 
 const double inputFieldHorizontalPadding = 30.0;
 
@@ -14,43 +12,42 @@ class LoginWidget extends StatelessWidget {
   final loginController = TextEditingController();
   final passwordController = TextEditingController();
 
+  LoginWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(
-          inputFieldHorizontalPadding, 0, inputFieldHorizontalPadding, 0),
+      padding: const EdgeInsets.fromLTRB(inputFieldHorizontalPadding, 0, inputFieldHorizontalPadding, 0),
       child: ListView(
         children: [
           Align(
             alignment: Alignment.topCenter,
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
-                  Image(
-                    image: AssetImage(
-                        'images/connexion_image-removebg-preview.png'),
-                    width: 200,
-                    height: 200,
-                  ),
-                  Text(
-                    'Connexion',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: Colors.black54,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Bienvenue sur Square Game !',
-                    style: TextStyle(fontSize: 20, color: Colors.black54),
-                  )
-                ],
-              ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Image(
+                  image: AssetImage(
+                      'images/connexion_image-removebg-preview.png'),
+                  width: 200,
+                  height: 200,
+                ),
+                Text(
+                  'Connexion',
+                  style: TextStyle(
+                      fontSize: 30,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  'Bienvenue sur Square Game !',
+                  style: TextStyle(fontSize: 20, color: Colors.black54),
+                )
+              ],
             ),
           ),
-          DefaultInput(label: 'Identifiant'),
-          DefaultInput(label: 'Mot de passe', isPassword: true),
-          Container(
+          DefaultInput(label: 'Identifiant', controller: loginController),
+          DefaultInput(label: 'Mot de passe', isPassword: true, controller: passwordController),
+          SizedBox(
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {},
@@ -91,9 +88,9 @@ class LoginWidget extends StatelessWidget {
   }
 
   void sendLogin() async {
-    var URL = Uri.parse('http://localhost:8080/api/1/sessions');
+    var url = Uri.parse('http://localhost:8080/api/1/sessions');
     var response = await post(
-      URL,
+      url,
       headers: setHeader(),
       body: setBody(),
     );
