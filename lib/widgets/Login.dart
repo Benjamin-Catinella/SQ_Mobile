@@ -3,6 +3,10 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'package:sg_mobile/widgets/Inputs.dart';
+import 'package:sg_mobile/widgets/Register.dart';
+
+import 'SquareGameAppBar.dart';
 
 const double inputFieldHorizontalPadding = 30.0;
 
@@ -24,7 +28,8 @@ class LoginWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
                   Image(
-                    image: AssetImage('images/connexion_image-removebg-preview.png'),
+                    image: AssetImage(
+                        'images/connexion_image-removebg-preview.png'),
                     width: 200,
                     height: 200,
                   ),
@@ -43,53 +48,12 @@ class LoginWidget extends StatelessWidget {
               ),
             ),
           ),
-
+          DefaultInput(label: 'Identifiant'),
+          DefaultInput(label: 'Mot de passe', isPassword: true),
           Container(
-            margin: const EdgeInsets.only(top: 50.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Identifiant',
-                  style: TextStyle(fontSize: 20, color: Colors.red),
-                  textAlign: TextAlign.left,
-                ),
-                TextField(
-                  controller: loginController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Identifiant',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Mot de passe',
-                  style: TextStyle(fontSize: 20, color: Colors.red),
-                ),
-                TextField(
-                  controller: passwordController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Identifiant',
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 10.0),
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
-                sendLogin();
-              },
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
@@ -107,14 +71,20 @@ class LoginWidget extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RegisterWidget()
+                    ),
+                  );
+                },
                 child: const Text(
                   "Inscription",
                   style: TextStyle(fontSize: 15, color: Colors.red),
                 ),
               )
             ],
-          )
+          ),
         ],
       ),
     );

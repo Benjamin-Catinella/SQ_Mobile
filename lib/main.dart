@@ -2,6 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:sg_mobile/widgets/Login.dart';
+import 'package:sg_mobile/widgets/SquareGameAppBar.dart';
 
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home : Scaffold(
-        appBar: AppBar(title: Text("Square Game"), backgroundColor: Colors.red),
+        resizeToAvoidBottomInset: false,
         body: LoginWidget(),
       )
     );
