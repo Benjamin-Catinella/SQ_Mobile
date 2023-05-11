@@ -1,10 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
 import 'package:sg_mobile/widgets/inputs.dart';
 import 'package:sg_mobile/widgets/register.dart';
-import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 
 import '../model/login_dto.dart';
 import '../services/authentication_service.dart';

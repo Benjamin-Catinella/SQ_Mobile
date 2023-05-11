@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:sg_mobile/services/service_locator.dart';
 import 'package:sg_mobile/widgets/login.dart';
+import 'package:sg_mobile/widgets/parties.dart';
 import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 
 
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         ),
         '/home': (context) => const Scaffold(
           resizeToAvoidBottomInset: false,
-          body: TemporaryPage(),
+          body: PartiesWidget(),
         ),
       },
 
