@@ -131,16 +131,3 @@ class _LoginWidgetState extends State<LoginWidget> {
     return success;
   }
 }
-
-class TemporaryPage extends StatelessWidget {
-  const TemporaryPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Temporary page'),
-      ),
-    );
-  }
-}

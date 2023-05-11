@@ -49,6 +49,7 @@ class GameListServiceImpl extends GameListService {
 
   Future<Map<String, String>> setHeader() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    print(prefs.get('token'));
     return { HttpHeaders.authorizationHeader: 'Bearer ${prefs.get('token')}' };
   }
 

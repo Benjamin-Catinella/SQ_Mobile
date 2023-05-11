@@ -1,30 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sg_mobile/models/game_list_model.dart';
 
 import '../services/game_list_service.dart';
 import '../services/service_locator.dart';
 import 'game_card.dart';
-class ItemListScreen extends StatefulWidget {
+class GameListWidget extends StatefulWidget {
+  const GameListWidget ({super.key});
   @override
-  _ItemListScreenState createState() => _ItemListScreenState();
+  State<GameListWidget> createState() => _GameListWidget();
 }
 
-class _ItemListScreenState extends State<ItemListScreen> {
-  // final GameListService gameListService = GameListService();
-  final gameListService = getIt<GameListService>();
-  var gameList;
+class _GameListWidget extends State<GameListWidget> {
+  GameListModel gameListModel = GameListModel();
+  List<Game> gameList = [];
 
   @override
-  Future<void> initState() async {
-    gameList = await gameListService.fetchGameList();
+  void initState() {
+    super.initState();
+    gameListModel.fetchGames().then((_) {
+      setState(() {
+        gameList = gameListModel.getGameList();
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        for (var game in gameList)
-          GameCard(game)
+        if (gameList != null)
+          for (var game in gameList)
+            GameCard(game)
       ],
     );
   }
