@@ -6,11 +6,15 @@ import 'package:sg_mobile/model/register_dto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class AuthenticationService {
-  Future<bool>  login(LoginDTO loginDTO);
-  Future<bool>  register(RegisterDTO registerDTO);
-  Future<bool>  logout();
-  Future<bool>  isLogged();
-  Future<String>  getToken();
+  Future<bool> login(LoginDTO loginDTO);
+
+  Future<bool> register(RegisterDTO registerDTO);
+
+  Future<bool> logout();
+
+  Future<bool> isLogged();
+
+  Future<String> getToken();
 }
 
 class AuthenticationServiceImpl extends AuthenticationService {
@@ -35,7 +39,7 @@ class AuthenticationServiceImpl extends AuthenticationService {
 
   @override
   Future<bool> login(LoginDTO loginDTO) async {
-    var url = Uri.parse('http://172.22.114.67:8080/api/1/sessions');
+    var url = Uri.parse('http://192.168.1.197:8080/api/1/sessions');
     final prefs = await SharedPreferences.getInstance();
 
     Response response = await post(
@@ -84,7 +88,8 @@ class AuthenticationServiceImpl extends AuthenticationService {
     );
 
     if (response.statusCode == 200) {
-      LoginDTO loginDTO = LoginDTO(login: registerDTO.login, password: registerDTO.password);
+      LoginDTO loginDTO =
+          LoginDTO(login: registerDTO.login, password: registerDTO.password);
       return login(loginDTO);
     } else {
       return false;

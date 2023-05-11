@@ -4,6 +4,7 @@ import 'package:sg_mobile/services/service_locator.dart';
 import 'package:sg_mobile/widgets/bottom_navigation_bar.dart';
 import 'package:sg_mobile/widgets/game_list_view.dart';
 import 'package:sg_mobile/widgets/login.dart';
+import 'package:sg_mobile/widgets/parties.dart';
 import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 
 
@@ -38,10 +39,19 @@ class _MyAppState extends State<MyApp> {
           body: LoginWidget(),
         ),
         '/home': (context) => Scaffold(
-          body: GameListWidget(),
+          resizeToAvoidBottomInset: false,
+          body: PartiesWidget(),
           bottomNavigationBar: CustomBottomNavigationBar(),
         ),
+        '/games': (context) => Scaffold(
+          appBar: SquareGameAppBar(),
+          resizeToAvoidBottomInset: false,
+          body: GameListWidget(),
+        ),
       },
+
     );
   }
+
+
 }
