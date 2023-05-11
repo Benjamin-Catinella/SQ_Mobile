@@ -9,6 +9,8 @@ abstract class AuthenticationService {
   Future<bool>  login(LoginDTO loginDTO);
   Future<bool>  register(RegisterDTO registerDTO);
   Future<bool>  logout();
+  Future<bool>  isLogged();
+  Future<String>  getToken();
 }
 
 class AuthenticationServiceImpl extends AuthenticationService {
@@ -45,7 +47,6 @@ class AuthenticationServiceImpl extends AuthenticationService {
     if (response.statusCode == 200) {
       // Save the token in the local storage
       await prefs.setString('token', jsonDecode(response.body)['accessToken']);
-      print("successfully logged in");
       return true;
     } else {
       return false;
@@ -83,9 +84,8 @@ class AuthenticationServiceImpl extends AuthenticationService {
     );
 
     if (response.statusCode == 200) {
-      LoginDTO loginDTO =
-          LoginDTO(login: registerDTO.login, password: registerDTO.password);
-      return await login(loginDTO);
+      LoginDTO loginDTO = LoginDTO(login: registerDTO.login, password: registerDTO.password);
+      return login(loginDTO);
     } else {
       return false;
     }

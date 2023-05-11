@@ -16,11 +16,24 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home : Scaffold(
-        appBar: SquareGameAppBar(),
-        resizeToAvoidBottomInset: false,
-        body: LoginWidget(),
-      )
+      routes: {
+        // Redirect / to /login
+        '/': (context) => Scaffold(
+          appBar: SquareGameAppBar(),
+          resizeToAvoidBottomInset: false,
+          body: LoginWidget(),
+        ),
+        '/login': (context) => Scaffold(
+          appBar: SquareGameAppBar(),
+          resizeToAvoidBottomInset: false,
+          body: LoginWidget(),
+        ),
+        '/home': (context) => const Scaffold(
+          resizeToAvoidBottomInset: false,
+          body: TemporaryPage(),
+        ),
+      },
+
     );
   }
 

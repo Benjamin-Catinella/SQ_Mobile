@@ -94,11 +94,11 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: () {
-                            tryRegister();
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const TemporaryPage()
-                            ));
+                          onPressed: () async {
+                            final navigator = Navigator.of(context);
+                            if(await tryRegister()) {
+                              navigator.pushNamedAndRemoveUntil('/home', (route) => false);
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
@@ -133,15 +133,17 @@ class _RegisterWidgetState extends State<RegisterWidget> {
     );
   }
 
-  void tryRegister() async {
+  Future<bool> tryRegister() async {
     setState(() {
       widget._loading = true;
     });
 
-    authenticationService.register(getRegisterDTO());
+    bool success = await authenticationService.register(getRegisterDTO());
 
+    print(success);
     setState(() {
       widget._loading = false;
     });
+    return success;
   }
 }

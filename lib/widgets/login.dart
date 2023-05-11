@@ -68,13 +68,11 @@ class _LoginWidgetState extends State<LoginWidget> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {
-                    tryLogin();
-                    // Navigates to a temporary page to test the navigation
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const TemporaryPage()
-                        ),
-                    );
+                  onPressed: () async {
+                    final navigator = Navigator.of(context);
+                    if(await tryLogin()) {
+                      navigator.pushNamedAndRemoveUntil('/home', (route) => false);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -115,7 +113,7 @@ class _LoginWidgetState extends State<LoginWidget> {
     );
   }
 
-  void tryLogin() async {
+  Future<bool> tryLogin() async {
     setState(() {
       widget._loading = true;
     });
@@ -125,11 +123,12 @@ class _LoginWidgetState extends State<LoginWidget> {
         password: passwordController.text
     );
 
-    authenticationService.login(loginDTO);
+    bool success = await authenticationService.login(loginDTO);
 
     setState(() {
       widget._loading = false;
     });
+    return success;
   }
 }
 
@@ -138,9 +137,8 @@ class TemporaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: SquareGameAppBar(),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: Text('Temporary page'),
       ),
     );
