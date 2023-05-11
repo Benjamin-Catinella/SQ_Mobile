@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^0.13.6
   get_it: ^7.6.0
-
+  loading_animation_widget: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

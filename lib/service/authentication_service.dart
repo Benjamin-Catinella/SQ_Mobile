@@ -1,10 +1,12 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
+import 'package:sg_mobile/model/login_dto.dart';
+import 'package:sg_mobile/model/register_dto.dart';
 
 abstract class AuthenticationService {
-  Future<Response> login(String login, String password);
-  Future<Response> register(String login, String password, String email);
+  Future<Response> login(LoginDTO loginDTO);
+  Future<Response> register(RegisterDTO registerDTO);
 }
 
 class AuthenticationServiceImpl extends AuthenticationService {
@@ -24,20 +26,29 @@ class AuthenticationServiceImpl extends AuthenticationService {
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
     } else {
-      //TODO: TOASTR MESSAGE
       throw Exception('Failed to create session.');
     }
   }
 
   @override
-  Future<Response> login(String login, String password) {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<Response> login(LoginDTO loginDTO) async {
+    var url = Uri.parse('http://172.22.114.67:8080/api/1/sessions');
+
+    return post(
+      url,
+      headers: setHeader(),
+      body: setBody(loginDTO),
+    );
   }
 
   @override
-  Future<Response> register(String login, String password, String email) {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future<Response> register(RegisterDTO registerDTO) {
+    var url = Uri.parse('http://172.22.114.67:8080/api/1/players');
+
+    return post(
+      url,
+      headers: setHeader(),
+      body: setBody(registerDTO),
+    );
   }
 }

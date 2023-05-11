@@ -4,5 +4,5 @@ import 'package:sg_mobile/service/authentication_service.dart';
 final getIt = GetIt.instance;
 
 setupServiceLocator() {
-  getIt.registerLazySingleton<AuthenticationService>(() => AuthenticationService());
+  getIt.registerLazySingleton<AuthenticationService>(() => AuthenticationServiceImpl());
 }
