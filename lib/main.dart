@@ -29,9 +29,25 @@ class MyApp extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: LoginWidget(),
         ),
-        '/home': (context) => const Scaffold(
-          resizeToAvoidBottomInset: false,
+        '/home': (context) => Scaffold(
           body: GameListWidget(),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: Colors.red,
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.view_agenda),
+                label: 'Parties en cours',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.videogame_asset),
+                label: 'jeux',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle),
+                label: 'Mon compte',
+              ),
+            ],
+          ),
         ),
       },
 
