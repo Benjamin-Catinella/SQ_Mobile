@@ -10,14 +10,31 @@ class GameCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.red),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(15),
       ),
-      child: Text(
-        game.label
+      child: Row(
+        children: <Widget>[
+          Container(
+            margin: const EdgeInsets.only(right: 20.0),
+            child: Image(
+              image: AssetImage(game.img),
+              width: 70,
+              height: 70,
+            ),
+          ),
+          Text(
+            game.label,
+            style: const TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
+
 
 }
