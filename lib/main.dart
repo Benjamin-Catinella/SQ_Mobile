@@ -40,8 +40,13 @@ class _MyAppState extends State<MyApp> {
         ),
         '/home': (context) => Scaffold(
           resizeToAvoidBottomInset: false,
-          body: GameListWidget(),
+          body: PartiesWidget(),
           bottomNavigationBar: CustomBottomNavigationBar(),
+        ),
+        '/games': (context) => Scaffold(
+          appBar: SquareGameAppBar(),
+          resizeToAvoidBottomInset: false,
+          body: GameListWidget(),
         ),
       },
 

@@ -56,21 +56,6 @@ class _PartiesState extends State<PartiesWidget> {
                   return const CircularProgressIndicator();
                 },
               ),
-              Column(
-                children: const [
-                  ListTile(
-                    leading: Icon(Icons.circle_outlined, size: 50),
-                    title: Text('Partie 1'),
-                    subtitle: Text('Votre partie en cours'),
-                  ),
-                  Divider(
-                    height: 10,
-                    thickness: 2,
-                    indent: 20,
-                    endIndent: 20,
-                  ),
-                ],
-              ),
             ],
           ),
         ],
