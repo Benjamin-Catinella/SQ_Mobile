@@ -50,7 +50,9 @@ class LoginWidget extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                sendLogin();
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
@@ -117,6 +119,7 @@ class LoginWidget extends StatelessWidget {
       print('Response body: ${response.body}');
     } else {
       //TODO: TOASTR MESSAGE
+      print(response.statusCode);
       throw Exception('Failed to create session.');
     }
   }
