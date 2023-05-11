@@ -1,14 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:sg_mobile/services/parties_service.dart';
+
+import '../services/service_locator.dart';
 
 class PartiesWidget extends StatefulWidget {
-  const PartiesWidget({Key? key}) : super(key: key);
+  PartiesWidget({Key? key}) : super(key: key);
 
   @override
   State<PartiesWidget> createState() => _PartiesState();
+
+
 }
 
 class _PartiesState extends State<PartiesWidget> {
+
+  final partieService = getIt<PartieService>();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,14 +26,44 @@ class _PartiesState extends State<PartiesWidget> {
         children: [
           Column(
             children: [
+              FutureBuilder<List<Partie>>(
+                future: partieService.getParties(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return Column(
+                      children: [
+                        for (var partie in snapshot.data!)
+                          Column(
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.circle_outlined, size: 50),
+                                title: Text(partie.id),
+                                subtitle: Text('Votre partie en cours'),
+                              ),
+                              const Divider(
+                                height: 10,
+                                thickness: 2,
+                                indent: 20,
+                                endIndent: 20,
+                              ),
+                            ],
+                          ),
+                      ],
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text("${snapshot.error}");
+                  }
+                  return const CircularProgressIndicator();
+                },
+              ),
               Column(
-                children: [
+                children: const [
                   ListTile(
-                    leading: const Icon(Icons.circle_outlined, size: 50),
-                    title: const Text('Partie 1'),
-                    subtitle: const Text('Votre partie en cours'),
+                    leading: Icon(Icons.circle_outlined, size: 50),
+                    title: Text('Partie 1'),
+                    subtitle: Text('Votre partie en cours'),
                   ),
-                  const Divider(
+                  Divider(
                     height: 10,
                     thickness: 2,
                     indent: 20,
