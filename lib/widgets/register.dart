@@ -5,8 +5,8 @@ import 'package:sg_mobile/widgets/loading.dart';
 import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../model/register_dto.dart';
-import '../service/authentication_service.dart';
-import '../service/service_locator.dart';
+import '../services/authentication_service.dart';
+import '../services/service_locator.dart';
 import 'inputs.dart';
 import 'login.dart';
 

@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:sg_mobile/service/service_locator.dart';
+import 'package:sg_mobile/services/service_locator.dart';
 import 'package:sg_mobile/widgets/login.dart';
 import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 
