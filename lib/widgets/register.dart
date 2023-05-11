@@ -8,6 +8,7 @@ import '../model/register_dto.dart';
 import '../service/authentication_service.dart';
 import '../service/service_locator.dart';
 import 'inputs.dart';
+import 'login.dart';
 
 const double inputFieldHorizontalPadding = 30.0;
 
@@ -95,6 +96,9 @@ class _RegisterWidgetState extends State<RegisterWidget> {
                         child: ElevatedButton(
                           onPressed: () {
                             tryRegister();
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const TemporaryPage()
+                            ));
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.red,
@@ -134,14 +138,7 @@ class _RegisterWidgetState extends State<RegisterWidget> {
       widget._loading = true;
     });
 
-    var response = await authenticationService.register(getRegisterDTO());
-    // simulate wait time
-    await Future.delayed(const Duration(seconds: 2));
-    if (response.statusCode == 200) {
-      print("Register success");
-    } else {
-      print("Register failed");
-    }
+    authenticationService.register(getRegisterDTO());
 
     setState(() {
       widget._loading = false;

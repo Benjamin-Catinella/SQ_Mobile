@@ -5,6 +5,7 @@ import 'package:http/http.dart';
 import 'package:sg_mobile/model/login_dto.dart';
 import 'package:sg_mobile/widgets/inputs.dart';
 import 'package:sg_mobile/widgets/register.dart';
+import 'package:sg_mobile/widgets/square_game_app_bar.dart';
 
 import '../service/authentication_service.dart';
 import '../service/service_locator.dart';
@@ -69,6 +70,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                 child: ElevatedButton(
                   onPressed: () {
                     tryLogin();
+                    // Navigates to a temporary page to test the navigation
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const TemporaryPage()
+                        ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.red,
@@ -119,18 +125,24 @@ class _LoginWidgetState extends State<LoginWidget> {
         password: passwordController.text
     );
 
-    var response = await authenticationService.login(loginDTO);
-    // simulate wait time
-    await Future.delayed(const Duration(seconds: 2));
-    if (response.statusCode == 200) {
-      print("Login success");
-    } else {
-      print("Login failed");
-    }
+    authenticationService.login(loginDTO);
+
     setState(() {
       widget._loading = false;
     });
+  }
+}
 
+class TemporaryPage extends StatelessWidget {
+  const TemporaryPage({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: SquareGameAppBar(),
+      body: const Center(
+        child: Text('Temporary page'),
+      ),
+    );
   }
 }
