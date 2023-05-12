@@ -39,7 +39,7 @@ class AuthenticationServiceImpl extends AuthenticationService {
 
   @override
   Future<bool> login(LoginDTO loginDTO) async {
-    var url = Uri.parse('http://192.168.1.197:8080/api/1/sessions');
+    var url = Uri.parse('http://169.254.138.41:8080/api/1/sessions');
     final prefs = await SharedPreferences.getInstance();
 
     Response response = await post(
@@ -79,7 +79,7 @@ class AuthenticationServiceImpl extends AuthenticationService {
 
   @override
   Future<bool> register(RegisterDTO registerDTO) async {
-    var url = Uri.parse('http://172.22.114.67:8080/api/1/players');
+    var url = Uri.parse('http://169.254.138.41:8080/api/1/players');
 
     Response response = await post(
       url,
