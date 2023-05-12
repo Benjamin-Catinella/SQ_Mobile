@@ -31,7 +31,7 @@ class _GameListWidget extends State<GameListWidget> {
       children: [
         if (gameList != null)
           for (var game in gameList)
-            GameCard(game)
+            GameCard(game, gameList: gameList,)
       ],
     );
   }

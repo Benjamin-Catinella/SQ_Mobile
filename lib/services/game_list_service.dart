@@ -14,7 +14,7 @@ class GameFetch {
 }
 
 class Game {
-  final String id;
+  final int id;
   final String label;
   final String img;
   final String description;

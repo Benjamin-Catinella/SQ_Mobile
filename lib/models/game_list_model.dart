@@ -13,6 +13,11 @@ class GameListModel extends ChangeNotifier {
     'Taquin': "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     'Puissance 4': "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   };
+  Map<String, int> idMap = {
+    'Morpion': 1,
+    'Taquin': 2,
+    'Puissance 4': 3,
+  };
   List<Game> gameList = [];
   final gameListService = getIt<GameListService>();
 
@@ -36,7 +41,7 @@ class GameListModel extends ChangeNotifier {
 
   Game setGame(GameFetch item) {
     return Game(
-      id: item.id,
+      id: setId(item.label),
       label: item.label,
       img: setImage(item.label),
       description: setDescription(item.label),
@@ -49,6 +54,10 @@ class GameListModel extends ChangeNotifier {
 
   String setDescription(String gameName) {
     return descriptionMap[gameName] ?? '';
+  }
+
+  int setId(String gamename) {
+    return idMap[gamename] ?? 0;
   }
 
   List<Game> getGameList() {

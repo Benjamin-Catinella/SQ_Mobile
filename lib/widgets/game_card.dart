@@ -5,16 +5,17 @@ import 'game_detail.dart';
 
 class GameCard extends StatelessWidget {
   final Game game;
-  const GameCard(this.game, {Key? key}) : super(key: key);
+  final List<Game> gameList;
+  const GameCard(this.game, {Key? key, required this.gameList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
+      onTap: () {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => GameDetailsPage(game: game),
+          builder: (context) => GameDetailsPage(game, gameList: gameList, initialIndex: gameList.indexWhere((g) => g.id == game.id)),
         ),
       );
     },
