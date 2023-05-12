@@ -50,7 +50,7 @@ class Participant {
 
 class PartieService {
   Future<List<Partie>> getParties() async {
-    Uri url = Uri.parse('http://192.168.1.197:8080/api/1/games');
+    Uri url = Uri.parse('http://169.254.138.41/api/1/games');
 
     Response response = await get(url, headers: await setHeader());
 
