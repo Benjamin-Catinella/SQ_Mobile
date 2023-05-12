@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:sg_mobile/services/service_locator.dart';
+import 'package:sg_mobile/widgets/app.dart';
 import 'package:sg_mobile/widgets/bottom_navigation_bar.dart';
 import 'package:sg_mobile/widgets/game_list_view.dart';
 import 'package:sg_mobile/widgets/login.dart';
@@ -38,16 +39,18 @@ class _MyAppState extends State<MyApp> {
           resizeToAvoidBottomInset: false,
           body: LoginWidget(),
         ),
-        '/home': (context) => Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: GameListWidget(),
-          bottomNavigationBar: CustomBottomNavigationBar(),
-        ),
-        '/games': (context) => Scaffold(
-          appBar: SquareGameAppBar(),
-          resizeToAvoidBottomInset: false,
-          body: GameListWidget(),
-        ),
+        '/home': (context) => HomeRoute(),
+        // '/home': (context) => Scaffold(
+        //   resizeToAvoidBottomInset: false,
+        //   body: GameListWidget(),
+        //   bottomNavigationBar: CustomBottomNavigationBar(),
+        // ),
+        // '/games': (context) => Scaffold(
+        //   appBar: SquareGameAppBar(),
+        //   resizeToAvoidBottomInset: false,
+        //   body: PartiesWidget(),
+        //   bottomNavigationBar: CustomBottomNavigationBar(),
+        // ),
       },
 
     );
